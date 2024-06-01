@@ -1,4 +1,4 @@
-<section class="container">
+<section class="container" [ngClass]="formStatus">
   <header>Registration Form</header>
 
   <form class="form" [formGroup]="reactiveForm" (ngSubmit)="OnFormSubmitted()">
@@ -29,9 +29,11 @@
     <div class="column">
       <div class="input-box">
         <input type="text" placeholder="Username" formControlName="username" />
-        <small *ngIf="reactiveForm.get('username')?.invalid && reactiveForm.get('username')?.touched">*Username is a
+        <small *ngIf="reactiveForm.get('username')?.errors?.['required'] && reactiveForm.get('username')?.touched">*Username is a
           required field.</small>
-        <button class="btn-gen-username" type="button">
+          <small *ngIf="reactiveForm.get('username').errors?.['checkUserName'] && reactiveForm.get('username')?.touched">*Username already exists.</small>
+        <button class="btn-gen-username" type="button" (click)="GenerateUsername()"
+        [disabled]="!(reactiveForm.get('firstname').value && reactiveForm.get('lastname').value && reactiveForm.get('dob').value)">
           Create a Username
         </button>
       </div>
@@ -155,4 +157,28 @@
     <button type="button" class="btn-add-delete" (click)="AddExperience()">Add Experience</button>
     <input type="submit" value="Submit" class="submit-btn">
   </form>
+</section>
+
+
+<section class="user-detail-container">
+  <div class="user-details-container">
+    <div class="user-avatar">
+      <p>{{formdata.firstname?.slice(0, 1)}}{{formdata.lastname?.slice(0, 1)}}</p>
+    </div>
+    <div class="user-details">
+      <div class="user-name">
+        <h2>{{formdata.firstname}} {{formdata.lastname}}</h2>
+      </div>
+      <p><b>Email:</b> {{formdata.email}}</p>
+      <p><b>Username:</b> {{formdata.username}} </p>
+      <p><b>Date of birth:</b> {{formdata.dob}}</p>
+      <div class="user-name">
+        <h3>Address</h3>
+      </div>
+      <span>{{formdata.address?.country}}</span>.
+      <span> {{formdata.address?.city}}</span>.
+      <span> {{formdata.address?.region}}</span>.
+      <span> {{formdata.address?.postal}}</span>
+    </div>
+  </div>
 </section>

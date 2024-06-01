@@ -19,6 +19,7 @@
     /* border: #707070 1px solid; */
     margin: 0 auto; /* Centering the container */
     box-shadow: rgba(187, 185, 185, 0.4) 0px 5px 15px; /* Adding shadow for better appearance */
+    margin-bottom: 25px;
 }
 
 /* Header Styling */
@@ -212,7 +213,9 @@ small {
     background: #fff;
     padding: 20px 30px;
     border-radius: 8px;
-    margin-top: 30px;
+    margin-top: 25px;
+    margin: 0 auto;
+    border: black solid 2px;
 }
 
 .user-details-container {
